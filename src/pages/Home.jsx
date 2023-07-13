@@ -3,9 +3,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
 
-import {Post} from '../components/Post';
-import {TagsBlock} from '../components/TagsBlock';
-import {CommentsBlock} from '../components/CommentsBlock';
+import {Post} from '../components';
+import {TagsBlock} from '../components';
+import {CommentsBlock} from '../components';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPosts, fetchTags} from "../redux/slices/posts";
 
@@ -37,7 +37,8 @@ export const Home = () => {
 												id={items._id}
 												key={items._id}
 												title={items.title}
-												imageUrl="https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"
+												// imageUrl={"https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"}
+												imageUrl={items.imageUrl}
 												user={items.user}
 												createdAt={items.createdAt}
 												viewsCount={items.viewsCount}
