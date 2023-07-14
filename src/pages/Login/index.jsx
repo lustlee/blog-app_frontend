@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
@@ -15,7 +15,6 @@ export const Login = () => {
 	const {
 		register,
 		handleSubmit,
-		setError,
 		formState: {errors, isValid}
 	} = useForm({
 		defaultValues: {
@@ -24,11 +23,6 @@ export const Login = () => {
 		},
 		mode: 'onChange'
 	});
-
-	if (isAuth) {
-		return <Navigate to='/'/>
-	}
-
 	const onSubmit = async (values) => {
 		const data = await dispatch(fetchAuth(values));
 
@@ -40,6 +34,10 @@ export const Login = () => {
 			window.localStorage.setItem('token', data.payload.token);
 		}
 	};
+
+	if (isAuth) {
+		return <Navigate to='/'/>
+	}
 
 	return (
 			<Paper classes={{root: styles.root}}>
@@ -64,7 +62,7 @@ export const Login = () => {
 							{...register('password', {required: 'Укажите пароль'})}
 							fullWidth
 					/>
-					<Button type='submit' size="large" variant="contained" fullWidth>
+					<Button disabled={!isValid} type='submit' size="large" variant="contained" fullWidth>
 						Войти
 					</Button>
 				</form>
