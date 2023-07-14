@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
@@ -19,8 +19,8 @@ export const Login = () => {
 		formState: {errors, isValid}
 	} = useForm({
 		defaultValues: {
-			email: 'test@gmail.com',
-			password: 'test123'
+			email: 'kuplinov@gmail.com',
+			password: '12345'
 		},
 		mode: 'onChange'
 	});
@@ -29,8 +29,16 @@ export const Login = () => {
 		return <Navigate to='/'/>
 	}
 
-	const onSubmit = (values) => {
-		dispatch(fetchAuth(values));
+	const onSubmit = async (values) => {
+		const data = await dispatch(fetchAuth(values));
+
+		if (!data.payload) {
+			return alert('Не удалось авторизоваться');
+		}
+
+		if ('token' in data.payload) {
+			window.localStorage.setItem('token', data.payload.token);
+		}
 	};
 
 	return (
