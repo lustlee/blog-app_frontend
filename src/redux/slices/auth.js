@@ -1,4 +1,4 @@
-import {createSlice, createAsyncThunk, autoBatchEnhancer} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from "../../axios";
 
 export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (params) => {

@@ -20,7 +20,7 @@ export const Home = () => {
 	useEffect(() => {
 		dispatch(fetchPosts());
 		dispatch(fetchTags());
-	}, []);
+	}, [dispatch]);
 
 	return (
 			<>
@@ -38,7 +38,7 @@ export const Home = () => {
 												id={items._id}
 												key={items._id}
 												title={items.title}
-												imageUrl={items.imageUrl}
+												imageUrl={items.imageUrl ? `http://localhost:4444${items.imageUrl}` : ''}
 												user={items.user}
 												createdAt={items.createdAt}
 												viewsCount={items.viewsCount}
